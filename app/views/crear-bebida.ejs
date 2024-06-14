@@ -1,0 +1,33 @@
+
+<%- include("partials/header") %>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Crear Producto</h1>
+    <form action="/crear-bebida" method="POST" enctype="multipart/form-data" class="default-form">
+        <div class="mb-3">
+            <label for="imagen" class="form-label">Imagen</label>
+            <input type="file" class="form-control" name="imagen" accept="image/*">
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre del producto">
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" class="form-control" name="precio" placeholder="Ingrese el precio del producto">
+        </div>
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Cantidad</label>
+            <select class="form-select" name="cantidad">
+                <option selected disabled>Seleccione la cantidad</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </form>
+</div>
+

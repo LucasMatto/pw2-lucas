@@ -1,0 +1,52 @@
+<%- include("partials/header") %>
+
+
+
+
+<div class="modal fade" id="confirmacionEliminarModal" tabindex="-1" aria-labelledby="confirmacionEliminarModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmacionEliminarModalLabel">Confirmación de Eliminación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que deseas eliminar esta bebida?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmarEliminarBtn" onclick="example()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-5">Listas de bebidas</h1>
+  <% if (bebidas && bebidas.length > 0) { %>
+    <% for(let i = 0; i < bebidas.length; i++) { %>
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="/<%= bebidas[i].imagen %>" class="img-fluid rounded-start" alt="<%= bebidas[i].nombre %>">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= bebidas[i].nombre %></h5>
+              <p class="card-text">Precio: $<%= bebidas[i].precio %></p>
+              <p class="card-text">Cantidad disponible: <%= bebidas[i].cantidad %></p>
+              <div class="btn-group" role="group" aria-label="Botones de acción">
+                <button type="button" class="btn btn-danger mx-5" data-bs-toggle="modal" onclick="eliminarBebida('<%= bebidas[i]._id %>')" data-bs-target="#confirmacionEliminarModal">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  <% } else { %>
+   <h3 class="text-center mt-4">No hay bebidas</h3>
+  <% } %>
+</div>
+
+
+<%- include("partials/footer") %>
