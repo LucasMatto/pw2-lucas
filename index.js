@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import mongoose from "mongoose";
 import multer from 'multer';
 
-
+const port = process.env.PORT || 3000
 const Bebida = mongoose.model("Bebida")
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
@@ -88,4 +88,4 @@ app.delete("/bebida/:id", async (req, res) => {
     }
 });
 
-app.listen(3000);
+app.listen(port);
