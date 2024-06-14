@@ -14,7 +14,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const app = express();
 
-database()
+//database()
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -46,10 +46,10 @@ app.use(express.static(path.join(__dirname, '/views/')))
 
 app.get("/", async (req, res) => {
 
-    const bebidas = await Bebida.find().sort({_id: -1})
-console.log(bebidas)
+//    const bebidas = await Bebida.find().sort({_id: -1})
+//console.log(bebidas)
     res.render("home", {
-        bebidas: bebidas
+        bebidas: null // bebidas
     });
   });
 
