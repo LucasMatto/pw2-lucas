@@ -38,6 +38,11 @@
               <div class="btn-group" role="group" aria-label="Botones de acción">
                 <button type="button" class="btn btn-danger mx-5" data-bs-toggle="modal" onclick="eliminarBebida('<%= bebidas[i]._id %>')" data-bs-target="#confirmacionEliminarModal">Eliminar</button>
               </div>
+              <div class="btn-group" role="group" aria-label="Botones de acción">
+                <button type="button" class="btn btn-success mx-5" data-bs-toggle="modal">
+                  <a href="/editar-bebida/<%= bebidas[i]._id %>" style="text-decoration: none; color: white;">Editar</a>
+                </button>
+              </div>
             </div>
           </div>
         </div>

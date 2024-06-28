@@ -10,7 +10,6 @@ const bebidaSchema = new mongoose.Schema({
     },
     imagen: {
         type: String,
-        required: 'La imagen de la bebida es obligatorio',
         trim: true
     },
     precio: {

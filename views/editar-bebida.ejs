@@ -1,0 +1,37 @@
+<%- include("partials/header") %>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Editar Producto</h1>
+    <form id="editarForm" action="/editar-bebida/<%= bebida._id %>" method="POST" enctype="multipart/form-data" class="default-form">
+        <div class="mb-3">
+            <label for="imagen" class="form-label">Imagen</label>
+            <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del producto" value="<%= bebida.nombre %>">
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="precio" name="precio" placeholder="Ingrese el precio del producto" value="<%= bebida.precio %>">
+        </div>
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Cantidad</label>
+            <select class="form-select" id="cantidad" name="cantidad">
+                <option selected disabled>Seleccione la cantidad</option>
+                <% for (let i = 1; i <= 5; i++) { %>
+                    <option value="<%= i %>" <% if (bebida.cantidad === i) { %> selected <% } %>><%= i %></option>
+                <% } %>
+            </select>
+        </div>
+        <input type="hidden" name="bebidaId" value="<%= bebida._id %>">
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+</div>
+
+<script>
+
+    
+</script>
+
+<%- include("partials/footer") %>

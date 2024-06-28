@@ -47,7 +47,6 @@ app.use(express.static(path.join(__dirname, '/views/')))
 app.get("/", async (req, res) => {
 
     const bebidas = await Bebida.find().sort({_id: -1})
-    console.log(bebidas)
     res.render("home", {
         bebidas: bebidas
     });
@@ -56,13 +55,61 @@ app.get("/", async (req, res) => {
   app.get("/crear-bebida", async (req, res) => {
     res.render("crear-bebida");
   });
+// se agrega logica editar bebida
+  app.get("/editar-bebida/:id", async (req, res) => {
+
+    const bebidaId = req.params.id;
+
+    const bebida = await Bebida.findOne({_id: bebidaId});
+
+    res.render("editar-bebida", {
+      bebida: bebida
+  });
+  });
+
+
+  app.post("/editar-bebida/:id", upload.single('imagen'), async (req, res) => {
+    try {
+        const bebidaId = req.params.id;
+        const { nombre, precio, cantidad } = req.body;
+
+        const nombreImagen = req?.file?.filename || null ;
+
+        console.log("aaaa",nombreImagen)
+
+        const bebida = await Bebida.findOne({_id: bebidaId});
+
+        const obj = {
+          nombre,
+          precio,
+          cantidad,
+          imagen : nombreImagen ? nombreImagen : bebida.imagen
+        }
+
+        const bebidaActualizada = await Bebida.findByIdAndUpdate(bebidaId, obj , { new: true });
+
+        if (!bebidaActualizada) {
+            return res.status(404).send("Bebida no encontrada");
+        }
+      
+        res.redirect('/');
+
+    } catch (err) {
+        console.error("Error al actualizar la bebida:", err);
+        res.status(500).send("Error interno del servidor");
+    }
+});
+
 
   app.post("/crear-bebida", upload.single('imagen') ,  async (req, res) => {
     try{
     const nuevaBebida  = req.body
 
-    const nombreImagen = req.file.filename;
-
+    let nombreImagen = null 
+    
+    if (req.file) {
+      nombreImagen = req.file.filename;
+    }
 
     const bebida = new Bebida({...nuevaBebida , imagen: nombreImagen})
 
