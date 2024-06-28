@@ -9,16 +9,16 @@ describe('Pruebas', () => {
     cy.contains('Crear Producto');
 
 
-    const nombreProducto = 'Café';
-    const precioProducto = '50';
-    const cantidadProducto = '3';
+    const nombreProducto = 'Whisky';
+    const precioProducto = '5000';
+    const cantidadProducto = '2';
 
     cy.get('input[name="nombre"]').type(nombreProducto);
     cy.get('input[name="precio"]').type(precioProducto);
     cy.get('select[name="cantidad"]').select(cantidadProducto);
 
 
-    cy.get('input[type="file"]').selectFile('1718201006906.png')
+    cy.get('input[type="file"]').selectFile('Whisky.png')
 
 
     cy.get('form').submit();
